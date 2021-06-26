@@ -1,0 +1,188 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Plank.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/PlankSpin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://asset/music/music.wav" type="AudioStream" id=5]
+[ext_resource path="res://scripts/World.gd" type="Script" id=6]
+[ext_resource path="res://asset/win.png" type="Texture" id=7]
+[ext_resource path="res://asset/annas/annas..png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "spin"
+length = 50.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Block5:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 50 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "end"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end"
+} ]
+}
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="win" type="Sprite" parent="."]
+position = Vector2( 4447, 123 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+
+[node name="Block" parent="." instance=ExtResource( 2 )]
+position = Vector2( -4, -5 )
+
+[node name="Block3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 987, 40 )
+
+[node name="Block4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1991, 130 )
+
+[node name="Block6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3393, 114 )
+
+[node name="Block5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2715, 14 )
+hide = true
+
+[node name="Block2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 431, 35 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48, -75 )
+
+[node name="Plank" parent="." instance=ExtResource( 3 )]
+position = Vector2( 282, 32 )
+rotation = 1.5708
+
+[node name="Plank3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 569, 28 )
+rotation = 1.5708
+
+[node name="Plank4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2335, 200 )
+rotation = 2.53073
+mode = 1
+
+[node name="Plank2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -123, 20 )
+rotation = 1.5708
+scale = Vector2( 3, 10 )
+mode = 1
+
+[node name="Plank5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3948, 458 )
+scale = Vector2( 4, 20 )
+mode = 1
+
+[node name="Plank6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 4348, 436 )
+scale = Vector2( 4, 20 )
+mode = 1
+
+[node name="PlankSpin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 885, 123 )
+
+[node name="PlankSpin2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1447, 159 )
+
+[node name="PlankSpin3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1681, 213 )
+rotation = 2.0944
+
+[node name="PlankSpin4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1887, 213 )
+
+[node name="PlankSpin5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2493, 155 )
+
+[node name="PlankSpin6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2691, 155 )
+
+[node name="PlankSpin7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2891, 155 )
+
+[node name="PlankSpin8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3291, 155 )
+
+[node name="PlankSpin9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3091, 155 )
+
+[node name="PlankSpin10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3853, 179 )
+speed = 0.5
+dir = -1.0
+
+[node name="PlankSpin11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 4051, 128 )
+speed = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spin"
+anims/spin = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="End" type="AnimationPlayer" parent="."]
+anims/end = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 4437, 172 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 5 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="End" type="Area2D" parent="AnimatedSprite"]
+position = Vector2( 9, 6.5 )
+scale = Vector2( 1, 0.5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/End"]
+shape = SubResource( 6 )
+[connection signal="body_entered" from="AnimatedSprite/End" to="." method="_on_End_body_entered"]
